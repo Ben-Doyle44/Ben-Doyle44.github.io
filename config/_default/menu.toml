@@ -1,0 +1,24 @@
+# Configure main menu and social menu
+#[[main]]
+#identifier = "home"
+#name = "Home"
+#url = "/"
+#[main.params]
+#icon = "home"
+#newtab = true
+
+[[social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/Ben-Doyle44"
+
+[social.params]
+icon = "brand-github"
+
+[[social]]
+identifier = "tryhackme"
+name = "TryHackMe"
+url = "https://tryhackme.com/p/Hazvock"
+
+[social.params]
+icon = "tryhackme"
