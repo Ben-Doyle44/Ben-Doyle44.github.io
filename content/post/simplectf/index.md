@@ -1,6 +1,6 @@
 ---
 title: "SimpleCTF"
-description: Writeup of SimpleCTF from TryHackme, difficulty easy.
+description: Writeup of the SimpleCTF from TryHackme, difficulty easy.
 slug: "SimpleCTF"
 date: 2022-10-08T13:15:46-04:00
 draft: false

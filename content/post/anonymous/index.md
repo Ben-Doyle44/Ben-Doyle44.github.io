@@ -1,6 +1,7 @@
 ---
 title: "Anonymous"
 description: Writeup of anonymous from TryHackme, difficulty medium.
+slug: "anonymous"
 date: 2022-10-09T09:05:03-04:00
 draft: false
 categories:

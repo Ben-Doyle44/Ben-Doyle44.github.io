@@ -1,6 +1,7 @@
 ---
 title: "Bountyhacker"
 description: Writeup of bounty hacker from TryHackme, difficulty easy.
+slug: "bountyhacker"
 date: 2022-10-09T10:24:24-04:00
 draft: false
 categories:
@@ -20,7 +21,7 @@ Anonymous login is allowed on the ftp service so I looked at that first. 2 text 
 
 ![ftp login](/img/bountyhacker/ftplogin.png)
 
-The file locks.txt seems to be a list of password and task.txt is a message to somebody called "lin", what I assume to be a username.
+The file locks.txt seems to be a list of password and task.txt is a message to somebody called "lin", what I assumed to be a username.
 
 ![files output](/img/bountyhacker/filesoutput.png)
 
