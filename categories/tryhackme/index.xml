@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 10:24:24 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 14:11:21 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>Boilerctf</title><link>https://demo.stack.jimmycai.com/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).&lt;/p>
+&lt;p>Then I logged onto the anonymous ftp service and grabbed the .info.txt file on it.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/ftplogin.png"
+loading="lazy"
+alt="ftp login"
+>&lt;/p>
+&lt;p>Question: File extension after anon login Answer: .txt&lt;/p>
+&lt;p>Question: What is on the highest port? Answer: ssh&lt;/p>
+&lt;p>Question: What&amp;rsquo;s running on port 10000? Answer: webmin&lt;/p>
+&lt;p>Question: Can you exploit the service running on that port? (yay/nay answer) Answer: nay&lt;/p>
+&lt;p>I then read the .info.txt file.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/ftpfile.png"
+loading="lazy"
+alt="ftp file"
+>&lt;/p>
+&lt;p>Using &lt;a class="link" href="https://quipqiup.com/" target="_blank" rel="noopener"
+>quipquip&lt;/a> I solved it getting &amp;ldquo;Just wanted to see if you find it. Pop. Remember: Enumeration is the key!&amp;rdquo;.&lt;/p>
+&lt;p>Seems to be pretty useless so I then used gobuster to enumerate the first http service, port 80.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gobuster.png"
+loading="lazy"
+alt="gobuster output"
+>&lt;/p>
+&lt;p>I went to robots.txt to see what was disallowed. All the urls showed did not exist. It did however, have an encoded string at the bottom.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/robots.png"
+loading="lazy"
+alt="robots.txt"
+>&lt;/p>
+&lt;p>&amp;ldquo;079 084 108 105 077 068 089 050 077 071 078 107 079 084 086 104 090 071 086 104 077 122 073 051 089 122 085 048 077 084 103 121 089 109 070 104 078 084 069 049 079 068 081 075&amp;rdquo;&lt;/p>
+&lt;p>It&amp;rsquo;s ASCII and you have to convert it to base64 and then to md5. The result you get is &amp;ldquo;kidding.&amp;rdquo;. It turns out /robots.txt is just a rabbit hole&lt;/p>
+&lt;p>The directory enumaration wasn&amp;rsquo;t useless though, as both /manual and /joomla are interesting. I looked at /joomla first.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/joomlacms.png"
+loading="lazy"
+alt="joomla homepage"
+>&lt;/p>
+&lt;p>Question: What&amp;rsquo;s CMS can you access? Answer: joomla&lt;/p>
+&lt;p>I moved onto enumerating /joomla using gobuster again.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gobuster2.png"
+loading="lazy"
+alt="gobuster output2"
+>&lt;/p>
+&lt;p>The only one of any interest was /joomla/_test&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/_test.png"
+loading="lazy"
+alt="/_test"
+>&lt;/p>
+&lt;p>I did a search for sar2html and found a &lt;a class="link" href="https://www.exploit-db.com/exploits/47204" target="_blank" rel="noopener"
+>remote code execution on exploitdb&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/exploit.png"
+loading="lazy"
+alt="exploit"
+>&lt;/p>
+&lt;p>I tested &amp;ldquo;http://10.10.168.219/joomla/_test/index.php?plot=;ls&amp;rdquo; to see if this rce worked as shown here:&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/rcecheck.png"
+loading="lazy"
+alt="rce check"
+>&lt;/p>
+&lt;p>Question: The interesting file name in the folder? Answer: log.txt&lt;/p>
+&lt;p>So then I did &amp;ldquo;http://10.10.168.219/joomla/_test/index.php?plot=;cat%20log.txt&amp;rdquo; to see what was in log.txt, it worked. I got the ssh username: basterd and password: superduperp@$$.&lt;/p>
+&lt;p>I logged into the user basterd and checked if they could run anything as root, they could not. There was also no flag so I knew I needed to get access to another user to get the user flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/sshlogin.png"
+loading="lazy"
+alt="ssh login"
+>&lt;/p>
+&lt;p>I saw the backup.sh and was interested in that so I outputted it to the terminal. It showed me the username: stoner and password: superduperp@$$no1knows&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/backup.png"
+loading="lazy"
+alt="backup.sh"
+>&lt;/p>
+&lt;p>Question: Where was the other users pass stored(no extension, just the name)? Answer: backup&lt;/p>
+&lt;p>I didn&amp;rsquo;t see anything else of use so I moved onto the stoner user.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/stonerlogin.png"
+loading="lazy"
+alt="stoner login"
+>&lt;/p>
+&lt;p>I got the user flag in stoner&amp;rsquo;s home directory.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: user.txt Answer: You made it till here, well done.&lt;/p>
+&lt;p>I ran sudo -l to check what I could now run.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/sudo-l.png"
+loading="lazy"
+alt="sudo -l"
+>&lt;/p>
+&lt;p>Nothing of use there so I looked at what executables are of the SUID bit set.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/suid.png"
+loading="lazy"
+alt="suid"
+>&lt;/p>
+&lt;p>The only one of interest is &amp;ldquo;find&amp;rdquo;.&lt;/p>
+&lt;p>I searched for find on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/find/" target="_blank" rel="noopener"
+>gtfobins&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gtfobins.png"
+loading="lazy"
+alt="gtfobins"
+>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/root.png"
+loading="lazy"
+alt="root"
+>&lt;/p>
+&lt;p>Question: What did you exploit to get the privileged user? Answer: find&lt;/p>
+&lt;p>Then I output root.txt to the terminal.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: root.txt Answer: It wasn&amp;rsquo;t that hard, was it?&lt;/p></description></item><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/nmapscan.png"
 loading="lazy"
 alt="nmap output"
@@ -9,7 +121,7 @@ alt="nmap output"
 loading="lazy"
 alt="ftp login"
 >&lt;/p>
-&lt;p>The file locks.txt seems to be a list of password and task.txt is a message to somebody called &amp;ldquo;lin&amp;rdquo;, what I assume to be a username.&lt;/p>
+&lt;p>The file locks.txt seems to be a list of password and task.txt is a message to somebody called &amp;ldquo;lin&amp;rdquo;, what I assumed to be a username.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/filesoutput.png"
 loading="lazy"
 alt="files output"
