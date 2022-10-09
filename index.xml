@@ -1,1 +1,107 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ben-Doyle44 Blog</title><link>https://Ben-Doyle44.github.io/</link><description>Recent content on Ben-Doyle44 Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Oct 2022 13:15:46 -0400</lastBuildDate><atom:link href="https://Ben-Doyle44.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Testpost</title><link>https://Ben-Doyle44.github.io/posts/testpost/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://Ben-Doyle44.github.io/posts/testpost/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/</link><description>Recent content on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Oct 2022 13:15:46 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).&lt;/p>
+&lt;p>Question: How many services are running under port 1000? Answer: 2&lt;/p>
+&lt;p>Question: What is running on the higher port? Answer: ssh&lt;/p>
+&lt;p>As shown by the nmap scan the ftp port has anonymous login enabled. I am going to look at that first.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/ftp.png"
+loading="lazy"
+alt="ftp anonymous login and file grab"
+>&lt;/p>
+&lt;p>Upon logging into the ftp service, I find a directory called &amp;ldquo;pub&amp;rdquo; and within that a text file called &amp;ldquo;ForMitch.txt&amp;rdquo;. I used the &amp;ldquo;get&amp;rdquo; command to copy the file onto my local machine.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/formitch.png"
+loading="lazy"
+alt="reading file taken from ftp"
+>&lt;/p>
+&lt;p>The &amp;ldquo;ForMitch.txt&amp;rdquo; file alludes to a weak password for the system user.&lt;/p>
+&lt;p>Nothing more to be found with the ftp login, so I move onto the website running on port 80.
+What&amp;rsquo;s found at first is the default apache2 page.&lt;/p>
+&lt;p>So I start enumarting the website using gobuster to find directories.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/gobuster.png"
+loading="lazy"
+alt="gobuster output"
+>&lt;/p>
+&lt;p>/simple seems interesting. It shows a cms homepage and at the bottom it displays which version of the cms software it is using.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/simpleversion.png"
+loading="lazy"
+alt="simple version"
+>&lt;/p>
+&lt;p>I searched for known vulnerabilities on that version and found this. It contains a working exploit written in python.&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.exploit-db.com/exploits/46635" target="_blank" rel="noopener"
+>CVE-2019–9053&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/simplevuln.png"
+loading="lazy"
+alt="simple vuln"
+>&lt;/p>
+&lt;p>Question: What’s the CVE you’re using against the application? Answer: CVE-2019–9053&lt;/p>
+&lt;p>Question: To what kind of vulnerability is the application vulnerable? Answer: Sqli&lt;/p>
+&lt;p>I run the python script with these paramaters:&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/pythonscript.png"
+loading="lazy"
+alt="running python script"
+>&lt;/p>
+&lt;p>It managed to find the username, email and password.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/exploitoutput.png"
+loading="lazy"
+alt="exploit output"
+>&lt;/p>
+&lt;p>Question: What&amp;rsquo;s the password? Answer: secret&lt;/p>
+&lt;p>I&amp;rsquo;ll try to login in via ssh with these credentials.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/sshlogin.png"
+loading="lazy"
+alt="ssh login"
+>&lt;/p>
+&lt;p>It&amp;rsquo;s sucessful so I&amp;rsquo;ll now try to find the user flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: What&amp;rsquo;s the user flag? Answer: G00d j0b, keep up!&lt;/p>
+&lt;p>Question: Is there any other user in the home directory? What’s its name? Answer: sunbath&lt;/p>
+&lt;p>I&amp;rsquo;ll use sudo -l to see what mitch is able to run.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/sudo-l.png"
+loading="lazy"
+alt="sudo -l"
+>&lt;/p>
+&lt;p>As vim can run as sudo, I&amp;rsquo;ll look at vim on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/vim/" target="_blank" rel="noopener"
+>gtfobins&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/vimsudo.png"
+loading="lazy"
+alt="vim sudo"
+>&lt;/p>
+&lt;p>Question: What can you leverage to spawn a privileged shell? Answer: vim&lt;/p>
+&lt;p>We can use sudo vim -c &amp;lsquo;:!/bin/sh&amp;rsquo; to get root and then read the root flag in root/root.txt&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: What&amp;rsquo;s the root flag? Answer: W3ll d0n3. You made it!&lt;/p></description></item><item><title>Archives</title><link>https://demo.stack.jimmycai.com/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://demo.stack.jimmycai.com/archives/</guid><description/></item><item><title>Links</title><link>https://demo.stack.jimmycai.com/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://demo.stack.jimmycai.com/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item><item><title>Search</title><link>https://demo.stack.jimmycai.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://demo.stack.jimmycai.com/search/</guid><description/></item></channel></rss>
