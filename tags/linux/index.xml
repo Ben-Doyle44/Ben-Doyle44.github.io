@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Easy on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/easy/</link><description>Recent content in Easy on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 10:24:24 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/easy/index.xml" rel="self" type="application/rss+xml"/><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/linux/</link><description>Recent content in Linux on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 10:24:24 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/nmapscan.png"
 loading="lazy"
 alt="nmap output"
@@ -49,7 +49,89 @@ alt="root"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
-&lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
+&lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>Anonymous</title><link>https://demo.stack.jimmycai.com/p/anonymous/</link><pubDate>Sun, 09 Oct 2022 09:05:03 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anonymous/</guid><description>&lt;p>Starting with an nmap scan to see what ports are open and what is running on them.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).&lt;/p>
+&lt;p>Question: Enumerate the machine. How many ports are open? Answer: 4&lt;/p>
+&lt;p>Question: What service is running on port 21? Answer: ftp&lt;/p>
+&lt;p>Question: What service is running on ports 139 and 445? Answer: smb&lt;/p>
+&lt;p>Since anonymous login is enabled on the ftp port, I tried that first.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/ftpfilegrab.png"
+loading="lazy"
+alt="ftp file grab"
+>&lt;/p>
+&lt;p>Looking through the scripts directory it seems there is a bash script and 2 text files so I grabbed them all.
+The scripts directory is also writeable.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/cleanscript.png"
+loading="lazy"
+alt="clean bash script"
+>&lt;/p>
+&lt;p>This is a bash script that delete files from the /tmp/&lt;/p>
+&lt;p>The to_do.txt file is just a note saying to remove anonymous login.&lt;/p>
+&lt;p>The removed_files.log file is a log for clean.sh&lt;/p>
+&lt;p>With nothing left to look at on the ftp port, I moved onto the smb service with another anonymous login.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smblogin.png"
+loading="lazy"
+alt="smb login"
+>&lt;/p>
+&lt;p>Question: There&amp;rsquo;s a share on the user&amp;rsquo;s computer. What&amp;rsquo;s it called? Answer: pics&lt;/p>
+&lt;p>I accessed the pics share.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smbpics.png"
+loading="lazy"
+alt="smb pics"
+>&lt;/p>
+&lt;p>I grabbed by images and used stegseek to crack any possible steganography passwords.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stegseekattempt.png"
+loading="lazy"
+alt="stegseek attempt"
+>&lt;/p>
+&lt;p>Despite trying 10million passwords none worked so I assumed there was nothing hidden in the images.&lt;/p>
+&lt;p>I knew the scripts directory was writeable so I edited change.sh to include a reverse shell.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellscript.png"
+loading="lazy"
+alt="reverse shell script"
+>&lt;/p>
+&lt;p>I then uploaded that to the scripts directory&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellupload.png"
+loading="lazy"
+alt="reverse shell upload"
+>&lt;/p>
+&lt;p>I set up netcat to listen for the reverse shell and gained user access.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/netcat.png"
+loading="lazy"
+alt="netcat"
+>&lt;/p>
+&lt;p>Then I stabilised the shell.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stabaliseshell.png"
+loading="lazy"
+alt="stabilise shell"
+>&lt;/p>
+&lt;p>I got the user flag&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: user.txt Answer: 90d6f992585815ff991e68748c414740&lt;/p>
+&lt;p>I looked for suid bits.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/suid.png"
+loading="lazy"
+alt="suid"
+>&lt;/p>
+&lt;p>/usr/bin/env stood out to me so I looked it up on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/env/" target="_blank" rel="noopener"
+>gtfobins&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/envsuid.png"
+loading="lazy"
+alt="envsuid"
+>&lt;/p>
+&lt;p>Running /usr/bin/env /bin/sh -p gave me root.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: flag.txt Answer: 4d930091c31a622a7ed10f27999af363&lt;/p></description></item><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/nmapscan.png"
 loading="lazy"
 alt="nmap output"

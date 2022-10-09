@@ -1,4 +1,137 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Oct 2022 13:15:46 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 10:24:24 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>It shows 3 ports open, 21(ftp), 22(ssh) and 80(http).&lt;/p>
+&lt;p>Anonymous login is allowed on the ftp service so I looked at that first. 2 text files were present so I grabbed them both.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/ftplogin.png"
+loading="lazy"
+alt="ftp login"
+>&lt;/p>
+&lt;p>The file locks.txt seems to be a list of password and task.txt is a message to somebody called &amp;ldquo;lin&amp;rdquo;, what I assume to be a username.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/filesoutput.png"
+loading="lazy"
+alt="files output"
+>&lt;/p>
+&lt;p>Question: Who wrote the task list? Answer: lin&lt;/p>
+&lt;p>I used hydra on the ssh port with locks.txt as the wordlist and lin as the username.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/hydra.png"
+loading="lazy"
+alt="hydra"
+>&lt;/p>
+&lt;p>It worked giving us the password &amp;ldquo;RedDr4gonSynd1cat3&amp;rdquo;&lt;/p>
+&lt;p>Question: What service can you bruteforce with the text file found? Answer: ssh&lt;/p>
+&lt;p>Question: What is the users password? Answer: RedDr4gonSynd1cat3&lt;/p>
+&lt;p>I logged in and read the user.txt giving me the user flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: user.txt Answer: THM{CR1M3_SyNd1C4T3}&lt;/p>
+&lt;p>I used sudo -l to look at what could run as root.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/sudo-l.png"
+loading="lazy"
+alt="sudo -l"
+>&lt;/p>
+&lt;p>I saw tar could run as root with no password so I looked it up on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/tar/" target="_blank" rel="noopener"
+>gtfobins&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/tarsudo.png"
+loading="lazy"
+alt="tar sudo"
+>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/root.png"
+loading="lazy"
+alt="root"
+>&lt;/p>
+&lt;p>Then I read root.txt giving me the root flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>Anonymous</title><link>https://demo.stack.jimmycai.com/p/anonymous/</link><pubDate>Sun, 09 Oct 2022 09:05:03 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anonymous/</guid><description>&lt;p>Starting with an nmap scan to see what ports are open and what is running on them.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).&lt;/p>
+&lt;p>Question: Enumerate the machine. How many ports are open? Answer: 4&lt;/p>
+&lt;p>Question: What service is running on port 21? Answer: ftp&lt;/p>
+&lt;p>Question: What service is running on ports 139 and 445? Answer: smb&lt;/p>
+&lt;p>Since anonymous login is enabled on the ftp port, I tried that first.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/ftpfilegrab.png"
+loading="lazy"
+alt="ftp file grab"
+>&lt;/p>
+&lt;p>Looking through the scripts directory it seems there is a bash script and 2 text files so I grabbed them all.
+The scripts directory is also writeable.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/cleanscript.png"
+loading="lazy"
+alt="clean bash script"
+>&lt;/p>
+&lt;p>This is a bash script that delete files from the /tmp/&lt;/p>
+&lt;p>The to_do.txt file is just a note saying to remove anonymous login.&lt;/p>
+&lt;p>The removed_files.log file is a log for clean.sh&lt;/p>
+&lt;p>With nothing left to look at on the ftp port, I moved onto the smb service with another anonymous login.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smblogin.png"
+loading="lazy"
+alt="smb login"
+>&lt;/p>
+&lt;p>Question: There&amp;rsquo;s a share on the user&amp;rsquo;s computer. What&amp;rsquo;s it called? Answer: pics&lt;/p>
+&lt;p>I accessed the pics share.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smbpics.png"
+loading="lazy"
+alt="smb pics"
+>&lt;/p>
+&lt;p>I grabbed by images and used stegseek to crack any possible steganography passwords.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stegseekattempt.png"
+loading="lazy"
+alt="stegseek attempt"
+>&lt;/p>
+&lt;p>Despite trying 10million passwords none worked so I assumed there was nothing hidden in the images.&lt;/p>
+&lt;p>I knew the scripts directory was writeable so I edited change.sh to include a reverse shell.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellscript.png"
+loading="lazy"
+alt="reverse shell script"
+>&lt;/p>
+&lt;p>I then uploaded that to the scripts directory&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellupload.png"
+loading="lazy"
+alt="reverse shell upload"
+>&lt;/p>
+&lt;p>I set up netcat to listen for the reverse shell and gained user access.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/netcat.png"
+loading="lazy"
+alt="netcat"
+>&lt;/p>
+&lt;p>Then I stabilised the shell.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stabaliseshell.png"
+loading="lazy"
+alt="stabilise shell"
+>&lt;/p>
+&lt;p>I got the user flag&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: user.txt Answer: 90d6f992585815ff991e68748c414740&lt;/p>
+&lt;p>I looked for suid bits.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/suid.png"
+loading="lazy"
+alt="suid"
+>&lt;/p>
+&lt;p>/usr/bin/env stood out to me so I looked it up on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/env/" target="_blank" rel="noopener"
+>gtfobins&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/envsuid.png"
+loading="lazy"
+alt="envsuid"
+>&lt;/p>
+&lt;p>Running /usr/bin/env /bin/sh -p gave me root.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: flag.txt Answer: 4d930091c31a622a7ed10f27999af363&lt;/p></description></item><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/nmapscan.png"
 loading="lazy"
 alt="nmap output"
@@ -6,20 +139,20 @@ alt="nmap output"
 &lt;p>It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).&lt;/p>
 &lt;p>Question: How many services are running under port 1000? Answer: 2&lt;/p>
 &lt;p>Question: What is running on the higher port? Answer: ssh&lt;/p>
-&lt;p>As shown by the nmap scan the ftp port has anonymous login enabled. I am going to look at that first.&lt;/p>
+&lt;p>As shown by the nmap scan the ftp port has anonymous login enabled. I looked at that first.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/ftp.png"
 loading="lazy"
 alt="ftp anonymous login and file grab"
 >&lt;/p>
-&lt;p>Upon logging into the ftp service, I find a directory called &amp;ldquo;pub&amp;rdquo; and within that a text file called &amp;ldquo;ForMitch.txt&amp;rdquo;. I used the &amp;ldquo;get&amp;rdquo; command to copy the file onto my local machine.&lt;/p>
+&lt;p>Upon logging into the ftp service, I found a directory called &amp;ldquo;pub&amp;rdquo; and within that a text file called &amp;ldquo;ForMitch.txt&amp;rdquo;. I used the &amp;ldquo;get&amp;rdquo; command to copy the file onto my local machine.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/formitch.png"
 loading="lazy"
 alt="reading file taken from ftp"
 >&lt;/p>
 &lt;p>The &amp;ldquo;ForMitch.txt&amp;rdquo; file alludes to a weak password for the system user.&lt;/p>
-&lt;p>Nothing more to be found with the ftp login, so I move onto the website running on port 80.
+&lt;p>Nothing more to be found with the ftp login, so I moved onto the website running on port 80.
 What&amp;rsquo;s found at first is the default apache2 page.&lt;/p>
-&lt;p>So I start enumarting the website using gobuster to find directories.&lt;/p>
+&lt;p>So I started enumarting the website using gobuster to find directories.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/gobuster.png"
 loading="lazy"
 alt="gobuster output"
@@ -38,7 +171,7 @@ alt="simple vuln"
 >&lt;/p>
 &lt;p>Question: What’s the CVE you’re using against the application? Answer: CVE-2019–9053&lt;/p>
 &lt;p>Question: To what kind of vulnerability is the application vulnerable? Answer: Sqli&lt;/p>
-&lt;p>I run the python script with these paramaters:&lt;/p>
+&lt;p>I ran the python script with these paramaters:&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/pythonscript.png"
 loading="lazy"
 alt="running python script"
@@ -61,19 +194,19 @@ alt="user flag"
 >&lt;/p>
 &lt;p>Question: What&amp;rsquo;s the user flag? Answer: G00d j0b, keep up!&lt;/p>
 &lt;p>Question: Is there any other user in the home directory? What’s its name? Answer: sunbath&lt;/p>
-&lt;p>I&amp;rsquo;ll use sudo -l to see what mitch is able to run.&lt;/p>
+&lt;p>I used sudo -l to see what mitch is able to run.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/sudo-l.png"
 loading="lazy"
 alt="sudo -l"
 >&lt;/p>
-&lt;p>As vim can run as sudo, I&amp;rsquo;ll look at vim on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/vim/" target="_blank" rel="noopener"
+&lt;p>As vim can run as sudo, I looked at vim on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/vim/" target="_blank" rel="noopener"
 >gtfobins&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/vimsudo.png"
 loading="lazy"
 alt="vim sudo"
 >&lt;/p>
 &lt;p>Question: What can you leverage to spawn a privileged shell? Answer: vim&lt;/p>
-&lt;p>We can use sudo vim -c &amp;lsquo;:!/bin/sh&amp;rsquo; to get root and then read the root flag in root/root.txt&lt;/p>
+&lt;p>I used sudo vim -c &amp;lsquo;:!/bin/sh&amp;rsquo; to get root and then read the root flag in root/root.txt&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/rootflag.png"
 loading="lazy"
 alt="root flag"
