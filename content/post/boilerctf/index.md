@@ -1,5 +1,5 @@
 ---
-title: "BoilerCTF"
+title: "Boiler CTF"
 description: Writeup of the boiler CTF from TryHackme, difficulty medium.
 slug: "boilerctf"
 date: 2022-10-09T14:11:21-04:00
