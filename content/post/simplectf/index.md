@@ -32,8 +32,7 @@ Upon logging into the ftp service, I found a directory called "pub" and within t
 
 The "ForMitch.txt" file alludes to a weak password for the system user.
 
-Nothing more to be found with the ftp login, so I moved onto the website running on port 80.
-What's found at first is the default apache2 page.
+Nothing more to be found with the ftp login, so I moved onto the website running on port 80. What's found at first is the default apache2 page.
 
 So I started enumarting the website using gobuster to find directories.
 

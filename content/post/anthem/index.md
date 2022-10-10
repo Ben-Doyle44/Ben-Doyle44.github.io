@@ -36,11 +36,11 @@ Question: What CMS is the website using? Answer: Umbraco
 
 Question: What is the domain of the website? Answer: anthem.com
 
-I went back to the homepage to see what other information I could gather. On the post "we are hiring" I found a potential email.
+I went back to the home page to see what other information I could gather. On the post "we are hiring" I found a potential email.
 
 ![we are hiring post](/img/anthem/wearehiring.png)
 
-I moved onto the second psot "a cheers to our it department". It alludes to an admin but doesn't directly name them.
+I moved onto the second post "a cheers to our it department". It alludes to an admin but doesn't directly name them.
 
 ![a cheers to it department](/img/anthem/acheerstoit.png)
 
@@ -50,7 +50,7 @@ I searched the poem up and got the name "Solomon Grundy".
 
 Question: What's the name of the Administrator? Answer: Solomon Grundy
 
-With this name we can assume the email address as the same format as the other one, the first letter of their first and last name followed by @anthem.com.
+With this name we can assume his email address has the same format as the other one, the first letter of their first and last name followed by @anthem.com.
 
 Question: Can we find find the email address of the administrator? Answer: SG@anthem.com
 
@@ -106,7 +106,7 @@ Then clicked allow full control over the restore file to the user SG.
 
 ![adding perms](/img/anthem/addingperms.png)
 
-Openeing it gives us "ChangeMeBaby1MoreTime".
+Opening it gives us "ChangeMeBaby1MoreTime".
 
 ![root password](/img/anthem/rootpass.png)
 

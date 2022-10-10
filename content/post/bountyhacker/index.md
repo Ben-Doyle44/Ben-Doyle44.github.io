@@ -17,7 +17,6 @@ It shows 3 ports open, 21(ftp), 22(ssh) and 80(http)
 
 ![nmap output](/img/bountyhacker/nmapscan.png)
 
-
 Anonymous login is allowed on the ftp service so I looked at that first. 2 text files were present so I grabbed them both.
 
 ![ftp login](/img/bountyhacker/ftplogin.png)
@@ -43,7 +42,6 @@ I logged in and read the user.txt giving me the user flag.
 ![user flag](/img/bountyhacker/userflag.png)
 
 Question: user.txt Answer: THM{CR1M3_SyNd1C4T3}
-
 
 I used sudo -l to look at what could run as root.
 

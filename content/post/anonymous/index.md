@@ -31,7 +31,7 @@ The scripts directory is also writeable.
 
 ![clean bash script](/img/anonymous/cleanscript.png)
 
-This is a bash script that delete files from the /tmp/ 
+This is a bash script that deletes files from the /tmp/ 
 
 The to_do.txt file is just a note saying to remove anonymous login.
 
@@ -57,7 +57,7 @@ I knew the scripts directory was writeable so I edited change.sh to include a re
 
 ![reverse shell script](/img/anonymous/reverseshellscript.png)
 
-I then uploaded that to the scripts directory
+I then uploaded that to the scripts directory.
 
 ![reverse shell upload](/img/anonymous/reverseshellupload.png)
 
@@ -69,7 +69,7 @@ Then I stabilised the shell.
 
 ![stabilise shell](/img/anonymous/stabaliseshell.png)
 
-I got the user flag
+I got the user flag.
 
 ![user flag](/img/anonymous/userflag.png)
 
