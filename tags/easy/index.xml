@@ -1,9 +1,129 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Easy on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/easy/</link><description>Recent content in Easy on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 10:24:24 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/easy/index.xml" rel="self" type="application/rss+xml"/><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Easy on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/easy/</link><description>Recent content in Easy on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Oct 2022 05:48:00 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/easy/index.xml" rel="self" type="application/rss+xml"/><item><title>Anthem</title><link>https://demo.stack.jimmycai.com/p/anthem/</link><pubDate>Mon, 10 Oct 2022 05:48:00 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anthem/</guid><description>&lt;p>As with every box I started with an nmap scan.&lt;/p>
+&lt;p>It shows 2 ports open, 80(http) and 3389(rdp)&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>Question: What port is for the web server? Answer: 80&lt;/p>
+&lt;p>Question: What port is for remote desktop service? Answer: 3389&lt;/p>
+&lt;p>I first went to the website as I didn&amp;rsquo;t have credentials for rdp.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/anthemhomepage.png"
+loading="lazy"
+alt="anthem home page"
+>&lt;/p>
+&lt;p>I started with manual enumeration by going to /robots.txt which provided a possible password and 4 urls.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/robots.png"
+loading="lazy"
+alt="robots.txt"
+>&lt;/p>
+&lt;p>Question: What is a possible password in one of the pages web crawlers check for? Answer: UmbracoIsTheBest!&lt;/p>
+&lt;p>Question: What CMS is the website using? Answer: Umbraco&lt;/p>
+&lt;p>Question: What is the domain of the website? Answer: anthem.com&lt;/p>
+&lt;p>I went back to the homepage to see what other information I could gather. On the post &amp;ldquo;we are hiring&amp;rdquo; I found a potential email.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/wearehiring.png"
+loading="lazy"
+alt="we are hiring post"
+>&lt;/p>
+&lt;p>I moved onto the second psot &amp;ldquo;a cheers to our it department&amp;rdquo;. It alludes to an admin but doesn&amp;rsquo;t directly name them.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/acheerstoit.png"
+loading="lazy"
+alt="a cheers to it department"
+>&lt;/p>
+&lt;p>I searched the poem up and got the name &amp;ldquo;Solomon Grundy&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/poem.png"
+loading="lazy"
+alt="poem search"
+>&lt;/p>
+&lt;p>Question: What&amp;rsquo;s the name of the Administrator? Answer: Solomon Grundy&lt;/p>
+&lt;p>With this name we can assume the email address as the same format as the other one, the first letter of their first and last name followed by @anthem.com.&lt;/p>
+&lt;p>Question: Can we find find the email address of the administrator? Answer: &lt;a class="link" href="mailto:SG@anthem.com" >SG@anthem.com&lt;/a>&lt;/p>
+&lt;p>I checked the source code of the site for the first 4 flags using curl to send and recieve data and grep to find the flag within it.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag1&amp;#43;2.png"
+loading="lazy"
+alt="flag1 and flag2"
+>&lt;/p>
+&lt;p>Question: What is flag 1? Answer: THM{L0L_WH0_US3S_M3T4}&lt;/p>
+&lt;p>Question: What is flag 2? Answer: THM{G!T_G00D}&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag3.png"
+loading="lazy"
+alt="flag3"
+>&lt;/p>
+&lt;p>Question: What is flag 3? Answer: THM{L0L_WH0_D15}&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag4.png"
+loading="lazy"
+alt="flag4"
+>&lt;/p>
+&lt;p>Question: What is flag 3? Answer: THM{AN0TH3R_M3TA}&lt;/p>
+&lt;p>With that finished, I moved onto logging into umbraco using the &amp;ldquo;&lt;a class="link" href="mailto:sg@anthem.com" >sg@anthem.com&lt;/a>&amp;rdquo; and &amp;ldquo;UmbracoIsTheBest!&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/umbracohomepage.png"
+loading="lazy"
+alt="umbraco home page"
+>&lt;/p>
+&lt;p>I didnt find anything of use so I went onto trying to log in via rdp. I used &lt;a class="link" href="https://remmina.org/" target="_blank" rel="noopener"
+>remmina&lt;/a> for this&lt;/p>
+&lt;p>I logged in using the username &amp;ldquo;sg&amp;rdquo; and the password &amp;ldquo;UmbracoIsTheBest!&amp;rdquo;&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/desktop.png"
+loading="lazy"
+alt="desktop"
+>&lt;/p>
+&lt;p>I then opened the user.txt file giving me the user flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/userflag.png"
+loading="lazy"
+alt="user flag"
+>&lt;/p>
+&lt;p>Question: Gain initial access to the machine, what is the contents of user.txt? Answer: THM{N00T_NO0T}&lt;/p>
+&lt;p>I looked around for any interesting files and came accross the directory backup.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/files.png"
+loading="lazy"
+alt="files"
+>&lt;/p>
+&lt;p>Inside backup was a text file called &amp;ldquo;restore&amp;rdquo; but I didn&amp;rsquo;t have permission to open it.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/restoreperm.png"
+loading="lazy"
+alt="restore permissions"
+>&lt;/p>
+&lt;p>I did however, have permission to change the permissions on it.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/properties.png"
+loading="lazy"
+alt="restore properties"
+>&lt;/p>
+&lt;p>I clicked on the edit button, then add and then add sg in the &amp;ldquo;enter the object name to select&amp;rdquo; area.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/user-group.png"
+loading="lazy"
+alt="user-group"
+>&lt;/p>
+&lt;p>Then clicked allow full control over the restore file to the user SG.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/addingperms.png"
+loading="lazy"
+alt="adding perms"
+>&lt;/p>
+&lt;p>Openeing it gives us &amp;ldquo;ChangeMeBaby1MoreTime&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/rootpass.png"
+loading="lazy"
+alt="root password"
+>&lt;/p>
+&lt;p>Question: Can we spot the admin password? Answer: ChangeMeBaby1MoreTime&lt;/p>
+&lt;p>I then looked for the administrator&amp;rsquo;s files to get the root flag&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/adminarea.png"
+loading="lazy"
+alt="admin area"
+>&lt;/p>
+&lt;p>I found the root file on the admin&amp;rsquo;s dekstop.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/admindekstop.png"
+loading="lazy"
+alt="admin dekstop"
+>&lt;/p>
+&lt;p>Opening that file gives us the final flag.&lt;/p>
+&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: Escalate your privileges to root, what is the contents of root.txt? Answer: THM{Y0U_4R3_1337}&lt;/p></description></item><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+&lt;p>It shows 3 ports open, 21(ftp), 22(ssh) and 80(http)&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
-&lt;p>It shows 3 ports open, 21(ftp), 22(ssh) and 80(http).&lt;/p>
 &lt;p>Anonymous login is allowed on the ftp service so I looked at that first. 2 text files were present so I grabbed them both.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/ftplogin.png"
 loading="lazy"
@@ -50,11 +170,11 @@ loading="lazy"
 alt="root flag"
 >&lt;/p>
 &lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
+&lt;p>It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
-&lt;p>It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).&lt;/p>
 &lt;p>Question: How many services are running under port 1000? Answer: 2&lt;/p>
 &lt;p>Question: What is running on the higher port? Answer: ssh&lt;/p>
 &lt;p>As shown by the nmap scan the ftp port has anonymous login enabled. I looked at that first.&lt;/p>

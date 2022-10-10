@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Medium on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/medium/</link><description>Recent content in Medium on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 14:11:21 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/medium/index.xml" rel="self" type="application/rss+xml"/><item><title>Boilerctf</title><link>https://demo.stack.jimmycai.com/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Medium on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/tags/medium/</link><description>Recent content in Medium on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 14:11:21 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/medium/index.xml" rel="self" type="application/rss+xml"/><item><title>BoilerCTF</title><link>https://demo.stack.jimmycai.com/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+&lt;p>It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
-&lt;p>It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).&lt;/p>
 &lt;p>Then I logged onto the anonymous ftp service and grabbed the .info.txt file on it.&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/ftplogin.png"
 loading="lazy"
@@ -111,11 +111,11 @@ loading="lazy"
 alt="root flag"
 >&lt;/p>
 &lt;p>Question: root.txt Answer: It wasn&amp;rsquo;t that hard, was it?&lt;/p></description></item><item><title>Anonymous</title><link>https://demo.stack.jimmycai.com/p/anonymous/</link><pubDate>Sun, 09 Oct 2022 09:05:03 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anonymous/</guid><description>&lt;p>Starting with an nmap scan to see what ports are open and what is running on them.&lt;/p>
+&lt;p>It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).&lt;/p>
 &lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
-&lt;p>It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).&lt;/p>
 &lt;p>Question: Enumerate the machine. How many ports are open? Answer: 4&lt;/p>
 &lt;p>Question: What service is running on port 21? Answer: ftp&lt;/p>
 &lt;p>Question: What service is running on ports 139 and 445? Answer: smb&lt;/p>
