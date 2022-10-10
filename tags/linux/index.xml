@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Ben Doyle blog</title><link>https://ben-doyle44.github.io/tags/linux/</link><description>Recent content in Linux on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 14:11:21 -0400</lastBuildDate><atom:link href="https://ben-doyle44.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>BoilerCTF</title><link>https://ben-doyle44.github.io/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://ben-doyle44.github.io/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Ben Doyle blog</title><link>https://ben-doyle44.github.io/tags/linux/</link><description>Recent content in Linux on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Oct 2022 09:25:01 -0400</lastBuildDate><atom:link href="https://ben-doyle44.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Oh my web server</title><link>https://ben-doyle44.github.io/p/ohmywebserver/</link><pubDate>Mon, 10 Oct 2022 09:25:01 -0400</pubDate><guid>https://ben-doyle44.github.io/p/ohmywebserver/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+&lt;p>It shows ports open, 22(ssh) and 80(http).&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/nmapscan.png"
+loading="lazy"
+alt="nmap output"
+>&lt;/p>
+&lt;p>I first went to the website and it showed a generic website for a consultancy business.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/homepage.png"
+loading="lazy"
+alt="website home page"
+>&lt;/p>
+&lt;p>I did some manual enumeration and couldn&amp;rsquo;t find anything so I ran gobuster but also didn&amp;rsquo;t find anything of use.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/gobuster.png"
+loading="lazy"
+alt="gobuster output"
+>&lt;/p>
+&lt;p>I went back and looked at the nmap scan and apache 2.4.49 was in use so I searched for any exploits. I found &lt;a class="link" href="https://www.exploit-db.com/exploits/50383" target="_blank" rel="noopener"
+>this&lt;/a> directory traversal and remote code execution exploit.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/exploit.png"
+loading="lazy"
+alt="exploit"
+>&lt;/p>
+&lt;p>I ran this command, using the exploit to get a reverse shell.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/exploitused.png"
+loading="lazy"
+alt="exploit used"
+>&lt;/p>
+&lt;p>Using netcat I set up a listener.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/netcat.png"
+loading="lazy"
+alt="netcat"
+>&lt;/p>
+&lt;p>I noticed it was inside of a docker container as shown by the &amp;ldquo;.dockerenv&amp;rdquo;. I searched for a flag but I couldn&amp;rsquo;t find one.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/filelist.png"
+loading="lazy"
+alt="file list"
+>&lt;/p>
+&lt;p>I tested if it was mounted or not, it was not.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/dockermounted.png"
+loading="lazy"
+alt="docker mounted check"
+>&lt;/p>
+&lt;p>I found that it had python3 capabilities.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/capabilitycheck.png"
+loading="lazy"
+alt="capability check"
+>&lt;/p>
+&lt;p>First thing I did was go to &lt;a class="link" href="https://gtfobins.github.io/gtfobins/python/" target="_blank" rel="noopener"
+>gtfobins&lt;/a> and read the capabilities section.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/gtfobins.png"
+loading="lazy"
+alt="gtfobins"
+>&lt;/p>
+&lt;p>I used that and then stabilised the shell.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/dockerroot.png"
+loading="lazy"
+alt="docker root"
+>&lt;/p>
+&lt;p>I got the user flag from /root/user.txt&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/userflag.png"
+loading="lazy"
+alt="userflag"
+>&lt;/p>
+&lt;p>Question: What is the user flag? Answer: THM{eacffefe1d2aafcc15e70dc2f07f7ac1}&lt;/p>
+&lt;p>I further enumerated the docker container so that I can try and escape it.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/ifconfig.png"
+loading="lazy"
+alt="if config"
+>&lt;/p>
+&lt;p>I grabbed nmap from &lt;a class="link" href="https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/nmap" target="_blank" rel="noopener"
+>here&lt;/a>&lt;/p>
+&lt;p>I set up a http server using python so that I could get nmap onto the docker container.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/pythonserver.png"
+loading="lazy"
+alt="http server"
+>&lt;/p>
+&lt;p>I got nmap onto the docker container and did a scan. The scan showed two interesting ports, 5985 and 5986.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/dockernmapscan.png"
+loading="lazy"
+alt="docker nmap scan"
+>&lt;/p>
+&lt;p>I looked up the ports on &lt;a class="link" href="https://book.hacktricks.xyz/network-services-pentesting/5985-5986-pentesting-omi" target="_blank" rel="noopener"
+>hacktricks&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/hacktricks.png"
+loading="lazy"
+alt="hack tricks"
+>&lt;/p>
+&lt;p>I found &lt;a class="link" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38647" target="_blank" rel="noopener"
+>this&lt;/a> vulnerability.&lt;/p>
+&lt;p>Then when looking for an exploit I found &lt;a class="link" href="https://github.com/AlteredSecurity/CVE-2021-38647" target="_blank" rel="noopener"
+>this&lt;/a>&lt;/p>
+&lt;p>I then used the same method I did for nmap for the exploit.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/placingexploit.png"
+loading="lazy"
+alt="exploit upload"
+>&lt;/p>
+&lt;p>I tested the exploit with the command &amp;ldquo;whoami&amp;rdquo; and it was sucessful.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/exploittest.png"
+loading="lazy"
+alt="exploit test"
+>&lt;/p>
+&lt;p>I then used the exploit read the root flag.&lt;/p>
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/ohmywebserver/rootflag.png"
+loading="lazy"
+alt="root flag"
+>&lt;/p>
+&lt;p>Question: What is the root flag? Answer: THM{7f147ef1f36da9ae29529890a1b6011f}&lt;/p></description></item><item><title>Boiler CTF</title><link>https://ben-doyle44.github.io/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://ben-doyle44.github.io/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
 &lt;p>It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/nmapscan.png"
 loading="lazy"
