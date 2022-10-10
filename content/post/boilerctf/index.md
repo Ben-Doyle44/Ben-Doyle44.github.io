@@ -1,6 +1,6 @@
 ---
-title: "Boilerctf"
-description: Writeup of the boiler ctf from TryHackme, difficulty medium.
+title: "BoilerCTF"
+description: Writeup of the boiler CTF from TryHackme, difficulty medium.
 slug: "boilerctf"
 date: 2022-10-09T14:11:21-04:00
 draft: false
@@ -14,9 +14,9 @@ tags:
 
 Started with a simple nmap scan.
 
-![nmap output](/img/boilerctf/nmapscan.png)
-
 It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).
+
+![nmap output](/img/boilerctf/nmapscan.png)
 
 Then I logged onto the anonymous ftp service and grabbed the .info.txt file on it.
 

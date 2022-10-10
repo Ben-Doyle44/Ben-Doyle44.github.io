@@ -13,9 +13,10 @@ tags:
 
 I ran an nmap scan to know what ports are open and what is using them.
 
+It shows 3 ports open, 21(ftp), 22(ssh) and 80(http)
+
 ![nmap output](/img/bountyhacker/nmapscan.png)
 
-It shows 3 ports open, 21(ftp), 22(ssh) and 80(http).
 
 Anonymous login is allowed on the ftp service so I looked at that first. 2 text files were present so I grabbed them both.
 

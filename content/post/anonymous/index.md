@@ -12,9 +12,9 @@ tags:
 ---
 Starting with an nmap scan to see what ports are open and what is running on them.
 
-![nmap output](/img/anonymous/nmapscan.png)
-
 It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).
+
+![nmap output](/img/anonymous/nmapscan.png)
 
 Question: Enumerate the machine.  How many ports are open? Answer: 4
 

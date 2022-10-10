@@ -14,9 +14,9 @@ tags:
 
 I started the the box with a simple nmap scan to know what ports were open and what was running on them.
 
-![nmap output](/img/simplectf/nmapscan.png)
-
 It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).
+
+![nmap output](/img/simplectf/nmapscan.png)
 
 Question: How many services are running under port 1000? Answer: 2
 
