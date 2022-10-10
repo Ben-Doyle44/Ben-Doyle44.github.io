@@ -236,7 +236,7 @@ The scripts directory is also writeable.&lt;/p>
 loading="lazy"
 alt="clean bash script"
 >&lt;/p>
-&lt;p>This is a bash script that delete files from the /tmp/&lt;/p>
+&lt;p>This is a bash script that deletes files from the /tmp/&lt;/p>
 &lt;p>The to_do.txt file is just a note saying to remove anonymous login.&lt;/p>
 &lt;p>The removed_files.log file is a log for clean.sh&lt;/p>
 &lt;p>With nothing left to look at on the ftp port, I moved onto the smb service with another anonymous login.&lt;/p>
@@ -261,7 +261,7 @@ alt="stegseek attempt"
 loading="lazy"
 alt="reverse shell script"
 >&lt;/p>
-&lt;p>I then uploaded that to the scripts directory&lt;/p>
+&lt;p>I then uploaded that to the scripts directory.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/reverseshellupload.png"
 loading="lazy"
 alt="reverse shell upload"
@@ -276,7 +276,7 @@ alt="netcat"
 loading="lazy"
 alt="stabilise shell"
 >&lt;/p>
-&lt;p>I got the user flag&lt;/p>
+&lt;p>I got the user flag.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/userflag.png"
 loading="lazy"
 alt="user flag"

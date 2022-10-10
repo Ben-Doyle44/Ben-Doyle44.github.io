@@ -19,12 +19,12 @@ alt="robots.txt"
 &lt;p>Question: What is a possible password in one of the pages web crawlers check for? Answer: UmbracoIsTheBest!&lt;/p>
 &lt;p>Question: What CMS is the website using? Answer: Umbraco&lt;/p>
 &lt;p>Question: What is the domain of the website? Answer: anthem.com&lt;/p>
-&lt;p>I went back to the homepage to see what other information I could gather. On the post &amp;ldquo;we are hiring&amp;rdquo; I found a potential email.&lt;/p>
+&lt;p>I went back to the home page to see what other information I could gather. On the post &amp;ldquo;we are hiring&amp;rdquo; I found a potential email.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/wearehiring.png"
 loading="lazy"
 alt="we are hiring post"
 >&lt;/p>
-&lt;p>I moved onto the second psot &amp;ldquo;a cheers to our it department&amp;rdquo;. It alludes to an admin but doesn&amp;rsquo;t directly name them.&lt;/p>
+&lt;p>I moved onto the second post &amp;ldquo;a cheers to our it department&amp;rdquo;. It alludes to an admin but doesn&amp;rsquo;t directly name them.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/acheerstoit.png"
 loading="lazy"
 alt="a cheers to it department"
@@ -35,7 +35,7 @@ loading="lazy"
 alt="poem search"
 >&lt;/p>
 &lt;p>Question: What&amp;rsquo;s the name of the Administrator? Answer: Solomon Grundy&lt;/p>
-&lt;p>With this name we can assume the email address as the same format as the other one, the first letter of their first and last name followed by @anthem.com.&lt;/p>
+&lt;p>With this name we can assume his email address has the same format as the other one, the first letter of their first and last name followed by @anthem.com.&lt;/p>
 &lt;p>Question: Can we find find the email address of the administrator? Answer: &lt;a class="link" href="mailto:SG@anthem.com" >SG@anthem.com&lt;/a>&lt;/p>
 &lt;p>I checked the source code of the site for the first 4 flags using curl to send and recieve data and grep to find the flag within it.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/flag1&amp;#43;2.png"
@@ -97,7 +97,7 @@ alt="user-group"
 loading="lazy"
 alt="adding perms"
 >&lt;/p>
-&lt;p>Openeing it gives us &amp;ldquo;ChangeMeBaby1MoreTime&amp;rdquo;.&lt;/p>
+&lt;p>Opening it gives us &amp;ldquo;ChangeMeBaby1MoreTime&amp;rdquo;.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/rootpass.png"
 loading="lazy"
 alt="root password"
@@ -188,8 +188,7 @@ loading="lazy"
 alt="reading file taken from ftp"
 >&lt;/p>
 &lt;p>The &amp;ldquo;ForMitch.txt&amp;rdquo; file alludes to a weak password for the system user.&lt;/p>
-&lt;p>Nothing more to be found with the ftp login, so I moved onto the website running on port 80.
-What&amp;rsquo;s found at first is the default apache2 page.&lt;/p>
+&lt;p>Nothing more to be found with the ftp login, so I moved onto the website running on port 80. What&amp;rsquo;s found at first is the default apache2 page.&lt;/p>
 &lt;p>So I started enumarting the website using gobuster to find directories.&lt;/p>
 &lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/gobuster.png"
 loading="lazy"
