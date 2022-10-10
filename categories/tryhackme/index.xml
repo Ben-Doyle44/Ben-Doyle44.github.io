@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://demo.stack.jimmycai.com/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Oct 2022 05:48:00 -0400</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>Anthem</title><link>https://demo.stack.jimmycai.com/p/anthem/</link><pubDate>Mon, 10 Oct 2022 05:48:00 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anthem/</guid><description>&lt;p>As with every box I started with an nmap scan.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on Ben Doyle blog</title><link>https://ben-doyle44.github.io/categories/tryhackme/</link><description>Recent content in TryHackMe on Ben Doyle blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Oct 2022 05:48:00 -0400</lastBuildDate><atom:link href="https://ben-doyle44.github.io/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>Anthem</title><link>https://ben-doyle44.github.io/p/anthem/</link><pubDate>Mon, 10 Oct 2022 05:48:00 -0400</pubDate><guid>https://ben-doyle44.github.io/p/anthem/</guid><description>&lt;p>As with every box I started with an nmap scan.&lt;/p>
 &lt;p>It shows 2 ports open, 80(http) and 3389(rdp)&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/nmapscan.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
 &lt;p>Question: What port is for the web server? Answer: 80&lt;/p>
 &lt;p>Question: What port is for remote desktop service? Answer: 3389&lt;/p>
 &lt;p>I first went to the website as I didn&amp;rsquo;t have credentials for rdp.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/anthemhomepage.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/anthemhomepage.png"
 loading="lazy"
 alt="anthem home page"
 >&lt;/p>
 &lt;p>I started with manual enumeration by going to /robots.txt which provided a possible password and 4 urls.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/robots.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/robots.png"
 loading="lazy"
 alt="robots.txt"
 >&lt;/p>
@@ -20,17 +20,17 @@ alt="robots.txt"
 &lt;p>Question: What CMS is the website using? Answer: Umbraco&lt;/p>
 &lt;p>Question: What is the domain of the website? Answer: anthem.com&lt;/p>
 &lt;p>I went back to the homepage to see what other information I could gather. On the post &amp;ldquo;we are hiring&amp;rdquo; I found a potential email.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/wearehiring.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/wearehiring.png"
 loading="lazy"
 alt="we are hiring post"
 >&lt;/p>
 &lt;p>I moved onto the second psot &amp;ldquo;a cheers to our it department&amp;rdquo;. It alludes to an admin but doesn&amp;rsquo;t directly name them.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/acheerstoit.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/acheerstoit.png"
 loading="lazy"
 alt="a cheers to it department"
 >&lt;/p>
 &lt;p>I searched the poem up and got the name &amp;ldquo;Solomon Grundy&amp;rdquo;.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/poem.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/poem.png"
 loading="lazy"
 alt="poem search"
 >&lt;/p>
@@ -38,94 +38,94 @@ alt="poem search"
 &lt;p>With this name we can assume the email address as the same format as the other one, the first letter of their first and last name followed by @anthem.com.&lt;/p>
 &lt;p>Question: Can we find find the email address of the administrator? Answer: &lt;a class="link" href="mailto:SG@anthem.com" >SG@anthem.com&lt;/a>&lt;/p>
 &lt;p>I checked the source code of the site for the first 4 flags using curl to send and recieve data and grep to find the flag within it.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag1&amp;#43;2.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/flag1&amp;#43;2.png"
 loading="lazy"
 alt="flag1 and flag2"
 >&lt;/p>
 &lt;p>Question: What is flag 1? Answer: THM{L0L_WH0_US3S_M3T4}&lt;/p>
 &lt;p>Question: What is flag 2? Answer: THM{G!T_G00D}&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag3.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/flag3.png"
 loading="lazy"
 alt="flag3"
 >&lt;/p>
 &lt;p>Question: What is flag 3? Answer: THM{L0L_WH0_D15}&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/flag4.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/flag4.png"
 loading="lazy"
 alt="flag4"
 >&lt;/p>
 &lt;p>Question: What is flag 3? Answer: THM{AN0TH3R_M3TA}&lt;/p>
 &lt;p>With that finished, I moved onto logging into umbraco using the &amp;ldquo;&lt;a class="link" href="mailto:sg@anthem.com" >sg@anthem.com&lt;/a>&amp;rdquo; and &amp;ldquo;UmbracoIsTheBest!&amp;rdquo;.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/umbracohomepage.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/umbracohomepage.png"
 loading="lazy"
 alt="umbraco home page"
 >&lt;/p>
 &lt;p>I didnt find anything of use so I went onto trying to log in via rdp. I used &lt;a class="link" href="https://remmina.org/" target="_blank" rel="noopener"
 >remmina&lt;/a> for this&lt;/p>
 &lt;p>I logged in using the username &amp;ldquo;sg&amp;rdquo; and the password &amp;ldquo;UmbracoIsTheBest!&amp;rdquo;&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/desktop.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/desktop.png"
 loading="lazy"
 alt="desktop"
 >&lt;/p>
 &lt;p>I then opened the user.txt file giving me the user flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/userflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/userflag.png"
 loading="lazy"
 alt="user flag"
 >&lt;/p>
 &lt;p>Question: Gain initial access to the machine, what is the contents of user.txt? Answer: THM{N00T_NO0T}&lt;/p>
 &lt;p>I looked around for any interesting files and came accross the directory backup.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/files.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/files.png"
 loading="lazy"
 alt="files"
 >&lt;/p>
 &lt;p>Inside backup was a text file called &amp;ldquo;restore&amp;rdquo; but I didn&amp;rsquo;t have permission to open it.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/restoreperm.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/restoreperm.png"
 loading="lazy"
 alt="restore permissions"
 >&lt;/p>
 &lt;p>I did however, have permission to change the permissions on it.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/properties.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/properties.png"
 loading="lazy"
 alt="restore properties"
 >&lt;/p>
 &lt;p>I clicked on the edit button, then add and then add sg in the &amp;ldquo;enter the object name to select&amp;rdquo; area.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/user-group.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/user-group.png"
 loading="lazy"
 alt="user-group"
 >&lt;/p>
 &lt;p>Then clicked allow full control over the restore file to the user SG.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/addingperms.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/addingperms.png"
 loading="lazy"
 alt="adding perms"
 >&lt;/p>
 &lt;p>Openeing it gives us &amp;ldquo;ChangeMeBaby1MoreTime&amp;rdquo;.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/rootpass.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/rootpass.png"
 loading="lazy"
 alt="root password"
 >&lt;/p>
 &lt;p>Question: Can we spot the admin password? Answer: ChangeMeBaby1MoreTime&lt;/p>
 &lt;p>I then looked for the administrator&amp;rsquo;s files to get the root flag&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/adminarea.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/adminarea.png"
 loading="lazy"
 alt="admin area"
 >&lt;/p>
 &lt;p>I found the root file on the admin&amp;rsquo;s dekstop.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/admindekstop.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/admindekstop.png"
 loading="lazy"
 alt="admin dekstop"
 >&lt;/p>
 &lt;p>Opening that file gives us the final flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anthem/rootflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anthem/rootflag.png"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
-&lt;p>Question: Escalate your privileges to root, what is the contents of root.txt? Answer: THM{Y0U_4R3_1337}&lt;/p></description></item><item><title>BoilerCTF</title><link>https://demo.stack.jimmycai.com/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
+&lt;p>Question: Escalate your privileges to root, what is the contents of root.txt? Answer: THM{Y0U_4R3_1337}&lt;/p></description></item><item><title>BoilerCTF</title><link>https://ben-doyle44.github.io/p/boilerctf/</link><pubDate>Sun, 09 Oct 2022 14:11:21 -0400</pubDate><guid>https://ben-doyle44.github.io/p/boilerctf/</guid><description>&lt;p>Started with a simple nmap scan.&lt;/p>
 &lt;p>It shows 4 ports open, 21(ftp), 80(http), 10000(http) and 55007(ssh).&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/nmapscan.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
 &lt;p>Then I logged onto the anonymous ftp service and grabbed the .info.txt file on it.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/ftplogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/ftplogin.png"
 loading="lazy"
 alt="ftp login"
 >&lt;/p>
@@ -134,121 +134,121 @@ alt="ftp login"
 &lt;p>Question: What&amp;rsquo;s running on port 10000? Answer: webmin&lt;/p>
 &lt;p>Question: Can you exploit the service running on that port? (yay/nay answer) Answer: nay&lt;/p>
 &lt;p>I then read the .info.txt file.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/ftpfile.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/ftpfile.png"
 loading="lazy"
 alt="ftp file"
 >&lt;/p>
 &lt;p>Using &lt;a class="link" href="https://quipqiup.com/" target="_blank" rel="noopener"
 >quipquip&lt;/a> I solved it getting &amp;ldquo;Just wanted to see if you find it. Pop. Remember: Enumeration is the key!&amp;rdquo;.&lt;/p>
 &lt;p>Seems to be pretty useless so I then used gobuster to enumerate the first http service, port 80.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gobuster.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/gobuster.png"
 loading="lazy"
 alt="gobuster output"
 >&lt;/p>
 &lt;p>I went to robots.txt to see what was disallowed. All the urls showed did not exist. It did however, have an encoded string at the bottom.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/robots.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/robots.png"
 loading="lazy"
 alt="robots.txt"
 >&lt;/p>
 &lt;p>&amp;ldquo;079 084 108 105 077 068 089 050 077 071 078 107 079 084 086 104 090 071 086 104 077 122 073 051 089 122 085 048 077 084 103 121 089 109 070 104 078 084 069 049 079 068 081 075&amp;rdquo;&lt;/p>
 &lt;p>It&amp;rsquo;s ASCII and you have to convert it to base64 and then to md5. The result you get is &amp;ldquo;kidding.&amp;rdquo;. It turns out /robots.txt is just a rabbit hole&lt;/p>
 &lt;p>The directory enumaration wasn&amp;rsquo;t useless though, as both /manual and /joomla are interesting. I looked at /joomla first.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/joomlacms.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/joomlacms.png"
 loading="lazy"
 alt="joomla homepage"
 >&lt;/p>
 &lt;p>Question: What&amp;rsquo;s CMS can you access? Answer: joomla&lt;/p>
 &lt;p>I moved onto enumerating /joomla using gobuster again.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gobuster2.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/gobuster2.png"
 loading="lazy"
 alt="gobuster output2"
 >&lt;/p>
 &lt;p>The only one of any interest was /joomla/_test&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/_test.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/_test.png"
 loading="lazy"
 alt="/_test"
 >&lt;/p>
 &lt;p>I did a search for sar2html and found a &lt;a class="link" href="https://www.exploit-db.com/exploits/47204" target="_blank" rel="noopener"
 >remote code execution on exploitdb&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/exploit.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/exploit.png"
 loading="lazy"
 alt="exploit"
 >&lt;/p>
 &lt;p>I tested &amp;ldquo;http://10.10.168.219/joomla/_test/index.php?plot=;ls&amp;rdquo; to see if this rce worked as shown here:&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/rcecheck.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/rcecheck.png"
 loading="lazy"
 alt="rce check"
 >&lt;/p>
 &lt;p>Question: The interesting file name in the folder? Answer: log.txt&lt;/p>
 &lt;p>So then I did &amp;ldquo;http://10.10.168.219/joomla/_test/index.php?plot=;cat%20log.txt&amp;rdquo; to see what was in log.txt, it worked. I got the ssh username: basterd and password: superduperp@$$.&lt;/p>
 &lt;p>I logged into the user basterd and checked if they could run anything as root, they could not. There was also no flag so I knew I needed to get access to another user to get the user flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/sshlogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/sshlogin.png"
 loading="lazy"
 alt="ssh login"
 >&lt;/p>
 &lt;p>I saw the backup.sh and was interested in that so I outputted it to the terminal. It showed me the username: stoner and password: superduperp@$$no1knows&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/backup.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/backup.png"
 loading="lazy"
 alt="backup.sh"
 >&lt;/p>
 &lt;p>Question: Where was the other users pass stored(no extension, just the name)? Answer: backup&lt;/p>
 &lt;p>I didn&amp;rsquo;t see anything else of use so I moved onto the stoner user.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/stonerlogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/stonerlogin.png"
 loading="lazy"
 alt="stoner login"
 >&lt;/p>
 &lt;p>I got the user flag in stoner&amp;rsquo;s home directory.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/userflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/userflag.png"
 loading="lazy"
 alt="user flag"
 >&lt;/p>
 &lt;p>Question: user.txt Answer: You made it till here, well done.&lt;/p>
 &lt;p>I ran sudo -l to check what I could now run.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/sudo-l.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/sudo-l.png"
 loading="lazy"
 alt="sudo -l"
 >&lt;/p>
 &lt;p>Nothing of use there so I looked at what executables are of the SUID bit set.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/suid.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/suid.png"
 loading="lazy"
 alt="suid"
 >&lt;/p>
 &lt;p>The only one of interest is &amp;ldquo;find&amp;rdquo;.&lt;/p>
 &lt;p>I searched for find on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/find/" target="_blank" rel="noopener"
 >gtfobins&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/gtfobins.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/gtfobins.png"
 loading="lazy"
 alt="gtfobins"
 >&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/root.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/root.png"
 loading="lazy"
 alt="root"
 >&lt;/p>
 &lt;p>Question: What did you exploit to get the privileged user? Answer: find&lt;/p>
 &lt;p>Then I output root.txt to the terminal.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/boilerctf/rootflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/boilerctf/rootflag.png"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
-&lt;p>Question: root.txt Answer: It wasn&amp;rsquo;t that hard, was it?&lt;/p></description></item><item><title>Bountyhacker</title><link>https://demo.stack.jimmycai.com/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
+&lt;p>Question: root.txt Answer: It wasn&amp;rsquo;t that hard, was it?&lt;/p></description></item><item><title>Bountyhacker</title><link>https://ben-doyle44.github.io/p/bountyhacker/</link><pubDate>Sun, 09 Oct 2022 10:24:24 -0400</pubDate><guid>https://ben-doyle44.github.io/p/bountyhacker/</guid><description>&lt;p>I ran an nmap scan to know what ports are open and what is using them.&lt;/p>
 &lt;p>It shows 3 ports open, 21(ftp), 22(ssh) and 80(http)&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/nmapscan.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
 &lt;p>Anonymous login is allowed on the ftp service so I looked at that first. 2 text files were present so I grabbed them both.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/ftplogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/ftplogin.png"
 loading="lazy"
 alt="ftp login"
 >&lt;/p>
 &lt;p>The file locks.txt seems to be a list of password and task.txt is a message to somebody called &amp;ldquo;lin&amp;rdquo;, what I assumed to be a username.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/filesoutput.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/filesoutput.png"
 loading="lazy"
 alt="files output"
 >&lt;/p>
 &lt;p>Question: Who wrote the task list? Answer: lin&lt;/p>
 &lt;p>I used hydra on the ssh port with locks.txt as the wordlist and lin as the username.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/hydra.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/hydra.png"
 loading="lazy"
 alt="hydra"
 >&lt;/p>
@@ -256,34 +256,34 @@ alt="hydra"
 &lt;p>Question: What service can you bruteforce with the text file found? Answer: ssh&lt;/p>
 &lt;p>Question: What is the users password? Answer: RedDr4gonSynd1cat3&lt;/p>
 &lt;p>I logged in and read the user.txt giving me the user flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/userflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/userflag.png"
 loading="lazy"
 alt="user flag"
 >&lt;/p>
 &lt;p>Question: user.txt Answer: THM{CR1M3_SyNd1C4T3}&lt;/p>
 &lt;p>I used sudo -l to look at what could run as root.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/sudo-l.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/sudo-l.png"
 loading="lazy"
 alt="sudo -l"
 >&lt;/p>
 &lt;p>I saw tar could run as root with no password so I looked it up on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/tar/" target="_blank" rel="noopener"
 >gtfobins&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/tarsudo.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/tarsudo.png"
 loading="lazy"
 alt="tar sudo"
 >&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/root.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/root.png"
 loading="lazy"
 alt="root"
 >&lt;/p>
 &lt;p>Then I read root.txt giving me the root flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/bountyhacker/rootflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/bountyhacker/rootflag.png"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
-&lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>Anonymous</title><link>https://demo.stack.jimmycai.com/p/anonymous/</link><pubDate>Sun, 09 Oct 2022 09:05:03 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/anonymous/</guid><description>&lt;p>Starting with an nmap scan to see what ports are open and what is running on them.&lt;/p>
+&lt;p>Question: root.txt Answer: THM{80UN7Y_h4cK3r}&lt;/p></description></item><item><title>Anonymous</title><link>https://ben-doyle44.github.io/p/anonymous/</link><pubDate>Sun, 09 Oct 2022 09:05:03 -0400</pubDate><guid>https://ben-doyle44.github.io/p/anonymous/</guid><description>&lt;p>Starting with an nmap scan to see what ports are open and what is running on them.&lt;/p>
 &lt;p>It shows 4 ports open, 21(ftp), 22(ssh), 139(smb) and 445(smb).&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/nmapscan.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
@@ -291,13 +291,13 @@ alt="nmap output"
 &lt;p>Question: What service is running on port 21? Answer: ftp&lt;/p>
 &lt;p>Question: What service is running on ports 139 and 445? Answer: smb&lt;/p>
 &lt;p>Since anonymous login is enabled on the ftp port, I tried that first.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/ftpfilegrab.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/ftpfilegrab.png"
 loading="lazy"
 alt="ftp file grab"
 >&lt;/p>
 &lt;p>Looking through the scripts directory it seems there is a bash script and 2 text files so I grabbed them all.
 The scripts directory is also writeable.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/cleanscript.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/cleanscript.png"
 loading="lazy"
 alt="clean bash script"
 >&lt;/p>
@@ -305,79 +305,79 @@ alt="clean bash script"
 &lt;p>The to_do.txt file is just a note saying to remove anonymous login.&lt;/p>
 &lt;p>The removed_files.log file is a log for clean.sh&lt;/p>
 &lt;p>With nothing left to look at on the ftp port, I moved onto the smb service with another anonymous login.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smblogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/smblogin.png"
 loading="lazy"
 alt="smb login"
 >&lt;/p>
 &lt;p>Question: There&amp;rsquo;s a share on the user&amp;rsquo;s computer. What&amp;rsquo;s it called? Answer: pics&lt;/p>
 &lt;p>I accessed the pics share.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/smbpics.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/smbpics.png"
 loading="lazy"
 alt="smb pics"
 >&lt;/p>
 &lt;p>I grabbed by images and used stegseek to crack any possible steganography passwords.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stegseekattempt.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/stegseekattempt.png"
 loading="lazy"
 alt="stegseek attempt"
 >&lt;/p>
 &lt;p>Despite trying 10million passwords none worked so I assumed there was nothing hidden in the images.&lt;/p>
 &lt;p>I knew the scripts directory was writeable so I edited change.sh to include a reverse shell.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellscript.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/reverseshellscript.png"
 loading="lazy"
 alt="reverse shell script"
 >&lt;/p>
 &lt;p>I then uploaded that to the scripts directory&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/reverseshellupload.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/reverseshellupload.png"
 loading="lazy"
 alt="reverse shell upload"
 >&lt;/p>
 &lt;p>I set up netcat to listen for the reverse shell and gained user access.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/netcat.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/netcat.png"
 loading="lazy"
 alt="netcat"
 >&lt;/p>
 &lt;p>Then I stabilised the shell.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/stabaliseshell.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/stabaliseshell.png"
 loading="lazy"
 alt="stabilise shell"
 >&lt;/p>
 &lt;p>I got the user flag&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/userflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/userflag.png"
 loading="lazy"
 alt="user flag"
 >&lt;/p>
 &lt;p>Question: user.txt Answer: 90d6f992585815ff991e68748c414740&lt;/p>
 &lt;p>I looked for suid bits.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/suid.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/suid.png"
 loading="lazy"
 alt="suid"
 >&lt;/p>
 &lt;p>/usr/bin/env stood out to me so I looked it up on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/env/" target="_blank" rel="noopener"
 >gtfobins&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/envsuid.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/envsuid.png"
 loading="lazy"
 alt="envsuid"
 >&lt;/p>
 &lt;p>Running /usr/bin/env /bin/sh -p gave me root.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/anonymous/rootflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/anonymous/rootflag.png"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
-&lt;p>Question: flag.txt Answer: 4d930091c31a622a7ed10f27999af363&lt;/p></description></item><item><title>SimpleCTF</title><link>https://demo.stack.jimmycai.com/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://demo.stack.jimmycai.com/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
+&lt;p>Question: flag.txt Answer: 4d930091c31a622a7ed10f27999af363&lt;/p></description></item><item><title>SimpleCTF</title><link>https://ben-doyle44.github.io/p/simplectf/</link><pubDate>Sat, 08 Oct 2022 13:15:46 -0400</pubDate><guid>https://ben-doyle44.github.io/p/simplectf/</guid><description>&lt;p>I started the the box with a simple nmap scan to know what ports were open and what was running on them.&lt;/p>
 &lt;p>It shows 3 ports open, 21(ftp), 80(http) and 2222(ssh).&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/nmapscan.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/nmapscan.png"
 loading="lazy"
 alt="nmap output"
 >&lt;/p>
 &lt;p>Question: How many services are running under port 1000? Answer: 2&lt;/p>
 &lt;p>Question: What is running on the higher port? Answer: ssh&lt;/p>
 &lt;p>As shown by the nmap scan the ftp port has anonymous login enabled. I looked at that first.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/ftp.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/ftp.png"
 loading="lazy"
 alt="ftp anonymous login and file grab"
 >&lt;/p>
 &lt;p>Upon logging into the ftp service, I found a directory called &amp;ldquo;pub&amp;rdquo; and within that a text file called &amp;ldquo;ForMitch.txt&amp;rdquo;. I used the &amp;ldquo;get&amp;rdquo; command to copy the file onto my local machine.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/formitch.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/formitch.png"
 loading="lazy"
 alt="reading file taken from ftp"
 >&lt;/p>
@@ -385,61 +385,61 @@ alt="reading file taken from ftp"
 &lt;p>Nothing more to be found with the ftp login, so I moved onto the website running on port 80.
 What&amp;rsquo;s found at first is the default apache2 page.&lt;/p>
 &lt;p>So I started enumarting the website using gobuster to find directories.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/gobuster.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/gobuster.png"
 loading="lazy"
 alt="gobuster output"
 >&lt;/p>
 &lt;p>/simple seems interesting. It shows a cms homepage and at the bottom it displays which version of the cms software it is using.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/simpleversion.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/simpleversion.png"
 loading="lazy"
 alt="simple version"
 >&lt;/p>
 &lt;p>I searched for known vulnerabilities on that version and found this. It contains a working exploit written in python.&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.exploit-db.com/exploits/46635" target="_blank" rel="noopener"
 >CVE-2019–9053&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/simplevuln.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/simplevuln.png"
 loading="lazy"
 alt="simple vuln"
 >&lt;/p>
 &lt;p>Question: What’s the CVE you’re using against the application? Answer: CVE-2019–9053&lt;/p>
 &lt;p>Question: To what kind of vulnerability is the application vulnerable? Answer: Sqli&lt;/p>
 &lt;p>I ran the python script with these paramaters:&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/pythonscript.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/pythonscript.png"
 loading="lazy"
 alt="running python script"
 >&lt;/p>
 &lt;p>It managed to find the username, email and password.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/exploitoutput.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/exploitoutput.png"
 loading="lazy"
 alt="exploit output"
 >&lt;/p>
 &lt;p>Question: What&amp;rsquo;s the password? Answer: secret&lt;/p>
 &lt;p>I&amp;rsquo;ll try to login in via ssh with these credentials.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/sshlogin.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/sshlogin.png"
 loading="lazy"
 alt="ssh login"
 >&lt;/p>
 &lt;p>It&amp;rsquo;s sucessful so I&amp;rsquo;ll now try to find the user flag.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/userflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/userflag.png"
 loading="lazy"
 alt="user flag"
 >&lt;/p>
 &lt;p>Question: What&amp;rsquo;s the user flag? Answer: G00d j0b, keep up!&lt;/p>
 &lt;p>Question: Is there any other user in the home directory? What’s its name? Answer: sunbath&lt;/p>
 &lt;p>I used sudo -l to see what mitch is able to run.&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/sudo-l.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/sudo-l.png"
 loading="lazy"
 alt="sudo -l"
 >&lt;/p>
 &lt;p>As vim can run as sudo, I looked at vim on &lt;a class="link" href="https://gtfobins.github.io/gtfobins/vim/" target="_blank" rel="noopener"
 >gtfobins&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/vimsudo.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/vimsudo.png"
 loading="lazy"
 alt="vim sudo"
 >&lt;/p>
 &lt;p>Question: What can you leverage to spawn a privileged shell? Answer: vim&lt;/p>
 &lt;p>I used sudo vim -c &amp;lsquo;:!/bin/sh&amp;rsquo; to get root and then read the root flag in root/root.txt&lt;/p>
-&lt;p>&lt;img src="https://demo.stack.jimmycai.com/img/simplectf/rootflag.png"
+&lt;p>&lt;img src="https://ben-doyle44.github.io/img/simplectf/rootflag.png"
 loading="lazy"
 alt="root flag"
 >&lt;/p>
